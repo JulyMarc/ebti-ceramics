@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ceramic BTI Atlas 6912·6913</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&display=swap">
+<style>
+/* Layout: summary band with HS-heading split, sticky filter rail, responsive card grid, side drawer for one ruling */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#1b2230; --muted:#5d6676; --line:#dfe3ea;
+  --cobalt:#1f4fa3; --cobalt-soft:#e6edf9; --celadon:#5d8f7d; --valid:#18794e; --invalid:#a3423a;
+  --f-display:"Young Serif",Georgia,serif; --f-body:"Public Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11151c; --surface:#181e27; --fg:#e7ebf2; --muted:#9aa4b4; --line:#2a3240;
+  --cobalt:#86a8ec; --cobalt-soft:#1d2a44; --celadon:#86b9a6; --valid:#5cc79a; --invalid:#e3897f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11151c; --surface:#181e27; --fg:#e7ebf2; --muted:#9aa4b4; --line:#2a3240;
+  --cobalt:#86a8ec; --cobalt-soft:#1d2a44; --celadon:#86b9a6; --valid:#5cc79a; --invalid:#e3897f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body);margin:0;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:1240px;margin:0 auto}
+header{padding-block:28px 12px;display:grid;gap:6px}
+h1{font:400 clamp(26px,4vw,38px)/1.15 var(--f-display);margin:0;text-wrap:balance}
+.lede{color:var(--muted);max-width:72ch;margin:0}
+.lede a{color:var(--cobalt)}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;padding-block:14px;border-block:1px solid var(--line);margin-block:14px 0}
+.stat{display:grid}
+.stat b{font:500 22px/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-block:14px}
+.hs{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.hs[aria-pressed="true"]{border-color:var(--cobalt);box-shadow:inset 0 0 0 1px var(--cobalt)}
+.hs .code{font:500 13px var(--f-mono);color:var(--cobalt)}
+.hs h2{font:600 15px/1.3 var(--f-body);margin:2px 0 6px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;display:flex}
+.bar i{background:var(--valid);display:block}
+.hs small{color:var(--muted);font-variant-numeric:tabular-nums}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line)}
+.filters input[type=search]{flex:1 1 240px;min-width:0}
+.filters input,.filters select{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg)}
+.filters label{display:flex;gap:6px;align-items:center;font-size:14px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+#count{font:13px var(--f-mono);color:var(--muted);margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;text-align:left;font:inherit;color:inherit;padding:0}
+.card:hover{border-color:var(--cobalt)}
+.thumb{aspect-ratio:1;max-width:100%;background:#fff;border-bottom:1px solid var(--line);position:relative;display:grid;place-items:center;overflow:hidden}
+.thumb img{max-width:100%;max-height:100%;object-fit:contain}
+.thumb.none{background:var(--cobalt-soft);display:grid;place-items:center;color:var(--muted);font:12px var(--f-mono)}
+.thumb .n{position:absolute;right:6px;bottom:6px;background:rgba(20,30,50,.75);color:#fff;font:11px var(--f-mono);padding:1px 6px;border-radius:9px}
+.body{padding:10px 12px 12px;display:grid;gap:4px;min-width:0}
+.row{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.cn{font:500 13px var(--f-mono);color:var(--cobalt)}
+.pill{font:600 10.5px var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;border-radius:9px;border:1px solid currentColor}
+.pill.v{color:var(--valid)} .pill.x{color:var(--invalid)}
+.meta{font:12px var(--f-mono);color:var(--muted)}
+.kw{font-size:12.5px;color:var(--celadon);overflow-wrap:anywhere}
+.desc{font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.more{margin:18px auto 0;display:block;font:inherit;padding:9px 18px;border-radius:6px;border:1px solid var(--cobalt);background:var(--surface);color:var(--cobalt);cursor:pointer}
+dialog{border:none;padding:0;max-width:min(860px,100vw - 24px);width:100%;max-height:90vh;border-radius:10px;background:var(--surface);color:var(--fg)}
+dialog::backdrop{background:rgba(10,15,25,.55)}
+.dlg{padding:20px;display:grid;gap:12px}
+.dlg h3{font:400 22px/1.2 var(--f-display);margin:0;overflow-wrap:anywhere}
+.dlg .photos{display:flex;flex-wrap:wrap;gap:8px}
+.dlg .photos a{display:grid;place-items:center;width:150px;max-width:100%;aspect-ratio:1;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.dlg .photos img{max-width:100%;max-height:100%;object-fit:contain}
+.dlg h4{font:600 12px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+.dlg p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.dlg .close{justify-self:end;font:inherit;background:none;border:1px solid var(--line);border-radius:6px;padding:4px 12px;color:var(--fg);cursor:pointer}
+.dlg a.ext{color:var(--cobalt)}
+footer{margin-top:32px;color:var(--muted);font-size:12.5px;max-width:80ch}
+#loading{padding:40px 0;color:var(--muted);font:14px var(--f-mono)}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
+</style>
+</head><body>
+
+<div class="wrap">
+<header>
+  <h1>Ceramic BTI Atlas: headings 6912 and 6913</h1>
+  <p class="lede">Every Binding Tariff Information ruling issued in the EU for ceramic tableware and kitchenware (6912) and ceramic statuettes and ornamental articles (6913), 2004 to today, with the product photos attached to each ruling. Built from the full public export of the European Commission's <a href="https://ec.europa.eu/taxation_customs/dds2/ebti/ebti_consultation.jsp" target="_blank" rel="noopener">EBTI database</a>.</p>
+  <div class="stats" id="stats"></div>
+</header>
+<div class="split" id="split"></div>
+<div class="filters">
+  <input type="search" id="q" placeholder="Search keyword, description, reference…" aria-label="Search">
+  <select id="st" aria-label="Status"><option value="">Valid and expired</option><option value="1">Valid only</option><option value="0">Expired/invalid only</option></select>
+  <select id="ct" aria-label="Issuing country"><option value="">All countries</option></select>
+  <select id="sort" aria-label="Sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="code">By CN code</option></select>
+  <label><input type="checkbox" id="ph"> With photos</label>
+  <span id="count"></span>
+</div>
+<div id="loading">Loading 8,224 rulings…</div>
+<div class="grid" id="grid"></div>
+<button class="more" id="more" hidden>Show more</button>
+<footer>
+  Unofficial research compilation, not an EU publication. Data: EBTI full export and ruling pages, European Commission (DG TAXUD), retrieved 5 Oct 2026. Descriptions are in the language of the issuing customs authority; keywords are the EBTI English keywords. Photos load directly from the EBTI server; some older photos are truncated at the source. BTIs bind only the holder; check the official ruling via the link on each record.
+</footer>
+</div>
+
+<dialog id="dlg"><div class="dlg" id="dlgBody"></div></dialog>
+
+<script>
+const HS = {"6912":"Ceramic tableware, kitchenware, household and toilet articles (other than porcelain)","6913":"Statuettes and other ornamental ceramic articles"};
+const PAGE = 60;
+let D = null, view = [], shown = 0, hs = "";
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtCode = c => c.replace(/^(\d{4})(\d{2})?(\d{2})?(\d{2})?.*$/, (m,a,b,c2,d) => [a,b,c2,d].filter(Boolean).join(" "));
+const nf = n => n.toLocaleString("en");
+
+const img = f => D.img + f.split('/').map(encodeURIComponent).join('/');
+const det = r => D.det + encodeURIComponent(r.r);
+
+function summary(){
+  const R = D.recs, photos = R.reduce((a,r)=>a+r.p.length,0);
+  const years = R.map(r=>r.a.slice(0,4)).filter(Boolean).sort();
+  $("stats").innerHTML = [
+    [nf(R.length),"rulings"],[nf(R.filter(r=>r.s).length),"valid today"],
+    [nf(R.filter(r=>r.p.length).length),"with photos"],[nf(photos),"photos"],
+    [new Set(R.map(r=>r.k)).size,"issuing countries"],[`${years[0]}–${years.at(-1)}`,"validity from"]
+  ].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  $("split").innerHTML = Object.entries(HS).map(([code,name])=>{
+    const g = R.filter(r=>r.c.startsWith(code)), v = g.filter(r=>r.s).length;
+    return `<button class="hs" data-hs="${code}" aria-pressed="false"><div class="code">${code}</div><h2>${name}</h2>
+      <div class="bar"><i style="width:${(100*v/g.length).toFixed(1)}%"></i></div>
+      <small>${nf(g.length)} rulings · ${nf(v)} valid · ${nf(g.filter(r=>r.p.length).length)} with photos</small></button>`;
+  }).join("");
+  document.querySelectorAll(".hs").forEach(b=>b.addEventListener("click",()=>{
+    hs = hs===b.dataset.hs ? "" : b.dataset.hs;
+    document.querySelectorAll(".hs").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.hs===hs)));
+    apply();
+  }));
+  const cc = {}; R.forEach(r=>cc[r.k]=(cc[r.k]||0)+1);
+  $("ct").innerHTML += Object.entries(cc).sort((a,b)=>b[1]-a[1]).map(([k,n])=>`<option value="${k}">${k} (${nf(n)})</option>`).join("");
+}
+
+function apply(){
+  const q = $("q").value.trim().toLowerCase(), st = $("st").value, ct = $("ct").value, ph = $("ph").checked;
+  view = D.recs.filter(r => (!hs || r.c.startsWith(hs)) && (st==="" || r.s==+st) && (!ct || r.k===ct) && (!ph || r.p.length)
+    && (!q || r._t.includes(q)));
+  const s = $("sort").value;
+  if (s==="old") view.sort((a,b)=>a.a.localeCompare(b.a));
+  else if (s==="code") view.sort((a,b)=>a.c.localeCompare(b.c)||b.a.localeCompare(a.a));
+  else view.sort((a,b)=>b.a.localeCompare(a.a));
+  $("count").textContent = `${nf(view.length)} shown`;
+  $("grid").innerHTML = ""; shown = 0; more();
+}
+
+function card(r, i){
+  const t = r.p.length ? `<div class="thumb"><img loading="lazy" alt="" src="${img(r.p[0][0])}">${r.p.length>1?`<span class="n">${r.p.length} photos</span>`:""}</div>`
+                       : `<div class="thumb none">no photo</div>`;
+  return `<button class="card" data-i="${i}">${t}<div class="body">
+    <div class="row"><span class="cn">${fmtCode(r.c)}</span><span class="pill ${r.s?"v":"x"}">${r.s?"valid":"expired"}</span></div>
+    <div class="meta">${esc(r.r)} · ${r.k}/${r.l} · ${r.a}</div>
+    <div class="kw">${esc(r.w.toLowerCase().replace(/,/g,", "))}</div>
+    <div class="desc">${esc(r.d)}</div></div></button>`;
+}
+
+function more(){
+  const end = Math.min(view.length, shown + PAGE);
+  $("grid").insertAdjacentHTML("beforeend", view.slice(shown, end).map((r,j)=>card(r, shown+j)).join(""));
+  shown = end; $("more").hidden = shown >= view.length;
+}
+
+function open(i){
+  const r = view[i];
+  const photos = r.p.map(p=>`<a href="${img(p[1])}" target="_blank" rel="noopener" title="Open full photo on EBTI"><img loading="lazy" alt="" src="${img(p[0])}"></a>`).join("");
+  $("dlgBody").innerHTML = `<button class="close" id="cls">Close</button>
+    <div class="row"><span class="cn">${fmtCode(r.c)}</span><span class="pill ${r.s?"v":"x"}">${r.s?"valid":"expired"}</span></div>
+    <h3>${esc(r.r)}</h3>
+    <div class="meta">Issued by ${r.k} · language ${r.l} · valid ${r.a} → ${r.e}</div>
+    ${photos?`<div class="photos">${photos}</div>`:""}
+    <h4>Keywords</h4><p class="kw">${esc(r.w.toLowerCase().replace(/,/g,", "))}</p>
+    <h4>Description of goods</h4><p>${esc(r.d)}</p>
+    <h4>Classification justification</h4><p>${esc(r.j)}</p>
+    <a class="ext" href="${det(r)}" target="_blank" rel="noopener">Open the official ruling on EBTI ↗</a>`;
+  $("cls").onclick = () => $("dlg").close();
+  $("dlg").showModal();
+}
+
+$("grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) open(+c.dataset.i); });
+$("dlg").addEventListener("click", e => { if (e.target === $("dlg")) $("dlg").close(); });
+$("more").addEventListener("click", more);
+let tq; $("q").addEventListener("input", () => { clearTimeout(tq); tq = setTimeout(apply, 200); });
+["st","ct","sort","ph"].forEach(id => $(id).addEventListener("change", apply));
+
+fetch("data.json").then(r=>r.json()).then(d=>{
+  D = d; D.recs.forEach(r => r._t = (r.r+" "+r.c+" "+r.w+" "+r.d).toLowerCase());
+  $("loading").hidden = true; summary(); apply();
+}).catch(()=>{ $("loading").textContent = "Could not load the data file. Reload the page to try again."; });
+</script>
+</body></html>
